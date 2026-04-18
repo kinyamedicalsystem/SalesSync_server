@@ -13,7 +13,7 @@ public class ServiceSpare {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String spare;
-    private int qty;
+    private Integer qty;
     private String price;
     @ManyToOne
     @JoinColumn(name="service_id")
@@ -36,11 +36,11 @@ public class ServiceSpare {
         this.spare = spare;
     }
 
-    public int getQty() {
+    public Integer getQty() {
         return qty;
     }
 
-    public void setQty(int qty) {
+    public void setQty(Integer qty) {
         this.qty = qty;
     }
 
