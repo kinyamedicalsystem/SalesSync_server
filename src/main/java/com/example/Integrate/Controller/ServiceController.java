@@ -20,7 +20,7 @@ public class ServiceController {
     @PostMapping
     public Service save(@RequestBody Service data) {
         Integer maxCsr=repo.findMaxCsrNo();
-        int nextCsr=(maxCsr == null) ? 1:maxCsr+1;
+        Integer nextCsr=(maxCsr == null) ? 1:maxCsr+1;
         data.setCsrNo(nextCsr);
 
         if (data.getSpares() != null) {
@@ -75,11 +75,12 @@ public class ServiceController {
        else{
             existing.setStatus("OPEN");
         }
-
-        existing.getSpares().clear();
-        for(ServiceSpare spare:data.getSpares()){
-            spare.setService(existing);
-            existing.getSpares().add(spare);
+        if(data.getSpares()!=null) {
+            existing.getSpares().clear();
+            for (ServiceSpare spare : data.getSpares()) {
+                spare.setService(existing);
+                existing.getSpares().add(spare);
+            }
         }
 
         return repo.save(existing);

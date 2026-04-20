@@ -46,16 +46,20 @@
             existing.setInstallationDate(data.getInstallationDate());
             existing.setEngineerName(data.getEngineerName());
             existing.setEngineerContact(data.getEngineerContact());
-            existing.setWarranty(data.getWarranty());
+            if(data.getWarranty()!=null) existing.setWarranty(data.getWarranty());
             existing.setDemoGiven(data.getDemoGiven());
             existing.setTrainingGiven(data.getTrainingGiven());
             existing.setEventStart(data.getEventStart());
             existing.setEventEnd(data.getEventEnd());
 
-            existing.getItems().clear();
-            for(InstallationItems item:data.getItems()){
-                item.setInstallation(existing);
-                existing.getItems().add(item);
+            if (data.getItems() != null) {// user is updating items → replace
+                existing.getItems().clear();
+
+                for (InstallationItems item : data.getItems()) {
+                    item.setInstallation(existing);
+                    existing.getItems().add(item);
+                }
+
             }
 
             return repo.save(existing);

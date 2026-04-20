@@ -14,7 +14,7 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String date;
-    private int csrNo;
+    private Integer csrNo;
     private String customerName;
     private String address;
     private String city;
@@ -56,11 +56,11 @@ public class Service {
         this.date = date;
     }
 
-    public int getCsrNo() {
+    public Integer getCsrNo() {
         return csrNo;
     }
 
-    public void setCsrNo(int csrNo) {
+    public void setCsrNo(Integer csrNo) {
         this.csrNo = csrNo;
     }
 
