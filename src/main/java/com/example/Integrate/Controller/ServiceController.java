@@ -1,7 +1,5 @@
 package com.example.Integrate.Controller;
 
-import com.example.Integrate.Modal.Installation;
-import com.example.Integrate.Modal.InstallationItems;
 import com.example.Integrate.Modal.Service;
 import com.example.Integrate.Modal.ServiceSpare;
 import com.example.Integrate.Repository.ServiceRepo;
@@ -22,7 +20,7 @@ public class ServiceController {
     @PostMapping
     public Service save(@RequestBody Service data) {
         Integer maxCsr=repo.findMaxCsrNo();
-        int nextCsr=(maxCsr == null)? 1:maxCsr+1;
+        int nextCsr=(maxCsr == null) ? 1:maxCsr+1;
         data.setCsrNo(nextCsr);
 
         if (data.getSpares() != null) {
@@ -56,7 +54,6 @@ public class ServiceController {
         existing.setAddress(data.getAddress());
         existing.setEquipmentName(data.getEquipmentName());
         existing.setSerialNo(data.getSerialNo());
-        existing.setEngineerName(data.getEngineerName());
         existing.setManufacturer(data.getManufacturer());
         existing.setModel(data.getModel());
         existing.setCustomerProblem(data.getCustomerProblem());
